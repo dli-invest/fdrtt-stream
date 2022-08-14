@@ -94,10 +94,10 @@ async def websocket_endpoint_log(websocket: WebSocket, video_id: Union[str, None
 
     try:
         while True:
-            await asyncio.sleep(60*4)
             print("Video ID:", video_id)
             logs = await log_reader(30)
             await websocket.send_text(logs)
+            await asyncio.sleep(60)
     except Exception as e:
         print(e)
     finally:
