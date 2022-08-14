@@ -110,7 +110,7 @@ if __name__ == "__main__":
     PORT = os.environ.get("PORT", 8000)
     uvicorn.run(
         "main:app",
-        host="localhost",
+        host="0.0.0.0",
         port=int(PORT),
         log_level="info",
         reload=True,
