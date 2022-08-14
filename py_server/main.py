@@ -7,6 +7,7 @@ FastAPI Streaming Log Viewer over WebSockets
 """
 
 # import libraries
+from typing import Union
 import uvicorn
 import asyncio
 import mysql.connector
@@ -15,7 +16,7 @@ import pandas as pd
 import spacy
 nlp = spacy.load("en_core_web_sm")
 from pathlib import Path
-from fastapi import FastAPI, WebSocket, Request
+from fastapi import FastAPI, WebSocket, Request, Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -45,6 +46,7 @@ async def fetch_sql_data(video_id: str):
     query = "SELECT * FROM dp8PhLsUcFE WHERE created_at > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY) ORDER BY created_at ASC"
     # Dont care about previous data
     new_df = pd.read_sql(query, con=connect_to_db())
+    print("FETCHING NEW DATA +", len(new_df))
     return new_df
 
 async def log_reader(n=5) -> list:
@@ -80,8 +82,9 @@ async def get(request: Request) -> templates.TemplateResponse:
     return templates.TemplateResponse("index.html", {"request": request, "context": context})
 
 
+# fix app websocket add param
 @app.websocket("/ws/log")
-async def websocket_endpoint_log(websocket: WebSocket) -> None:
+async def websocket_endpoint_log(websocket: WebSocket, video_id: Union[str, None] = Query(default=None),) -> None:
     """WebSocket endpoint for client connections
 
     Args:
@@ -91,7 +94,8 @@ async def websocket_endpoint_log(websocket: WebSocket) -> None:
 
     try:
         while True:
-            await asyncio.sleep(1)
+            await asyncio.sleep(60*4)
+            print("Video ID:", video_id)
             logs = await log_reader(30)
             await websocket.send_text(logs)
     except Exception as e:
@@ -107,7 +111,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host="localhost",
-        port=PORT,
+        port=int(PORT),
         log_level="info",
         reload=True,
         workers=1,

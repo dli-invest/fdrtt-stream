@@ -35,9 +35,9 @@
     </div>
 
     <script>
-      var ws_log = new WebSocket("ws://localhost:8000/ws/log");
+      var ws = new WebSocket("ws://localhost:8000/ws/log?video_id=value1");
 
-      ws_log.onmessage = function (event) {
+      ws.onmessage = function (event) {
         var logs = document.getElementById("logs");
         var log_data = event.data;
         logs.innerHTML = log_data;
