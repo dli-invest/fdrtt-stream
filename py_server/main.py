@@ -42,7 +42,7 @@ def connect_to_db():
 
 async def fetch_sql_data(video_id: str):
     # find all results from dp8PhLsUcFE within the last day
-    query = "SELECT * FROM dp8PhLsUcFE WHERE created_at > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY) ORDER BY created_at DESC"
+    query = "SELECT * FROM dp8PhLsUcFE WHERE created_at > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY) ORDER BY created_at ASC"
     # Dont care about previous data
     new_df = pd.read_sql(query, con=connect_to_db())
     return new_df
