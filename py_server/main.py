@@ -101,10 +101,13 @@ async def websocket_endpoint_log(websocket: WebSocket) -> None:
 
 # set parameters to run uvicorn
 if __name__ == "__main__":
+
+    # get PORT varaible
+    PORT = os.environ.get("PORT", 8000)
     uvicorn.run(
         "main:app",
         host="localhost",
-        port=8000,
+        port=PORT,
         log_level="info",
         reload=True,
         workers=1,
