@@ -38,11 +38,14 @@
       console.log("{{context.log_file}}");
       console.log("{{context.port}}");
       console.log("{{context.host}}");
+      var host;
       var rtt;
       {% if context.domain == "fdrtt-stream-production.up.railway.app" %}
       rtt = "wss"
+      host = "fdrtt-stream-production.up.railway.app"
       {% else %}
       rtt = "ws"
+      host = "{{context.host}}"
       {% endif %}
       console.log(rtt);
       // maybe option for wss
