@@ -112,7 +112,7 @@ if __name__ == "__main__":
 
     # get PORT varaible
     PORT = os.environ.get("PORT", 8000)
-    HOST = os.environ.get("HOST", "https://fdrtt-stream-production.up.railway.app/")
+    HOST = os.environ.get("HOST", "0.0.0.0")
     uvicorn.run(
         "main:app",
         host=HOST,
