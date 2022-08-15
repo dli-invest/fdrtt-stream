@@ -19,6 +19,7 @@ from pathlib import Path
 from fastapi import FastAPI, WebSocket, Request, Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 # set path and log file name
 base_dir = Path(__file__).resolve().parent
@@ -107,6 +108,7 @@ async def websocket_endpoint_log(websocket: WebSocket, video_id: Union[str, None
     finally:
         await websocket.close()
 
+app.add_middleware(HTTPSRedirectMiddleware)
 # set parameters to run uvicorn
 if __name__ == "__main__":
 
