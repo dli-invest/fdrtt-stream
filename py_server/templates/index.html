@@ -39,7 +39,7 @@
       console.log("{{context.port}}");
       console.log("{{context.host}}");
       // maybe option for wss
-      var ws = new WebSocket("wss://{{context.host}}:{{context.port}}/ws/log?video_id=value1");
+      var ws = new WebSocket("ws://{{context.host}}:{{context.port}}/ws/log?video_id=value1");
 
       ws.onmessage = function (event) {
         var logs = document.getElementById("logs");
