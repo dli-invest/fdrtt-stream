@@ -78,7 +78,9 @@ async def get(request: Request) -> templates.TemplateResponse:
     Returns:
         TemplateResponse: Jinja template with context data.
     """
-    context = {"title": "FastAPI Streaming Log Viewer over WebSockets", "log_file": log_file}
+    PORT = os.environ.get("PORT", 8000)
+    HOST = os.environ.get("HOST", "0.0.0.0")
+    context = {"title": "FastAPI Streaming Log Viewer over WebSockets", "log_file": log_file, "port": PORT, "host": HOST}
     return templates.TemplateResponse("index.html", {"request": request, "context": context})
 
 
@@ -108,12 +110,13 @@ if __name__ == "__main__":
 
     # get PORT varaible
     PORT = os.environ.get("PORT", 8000)
+    HOST = os.environ.get("HOST", "0.0.0.0")
     uvicorn.run(
         "main:app",
-        host="0.0.0.0",
+        host=HOST,
         port=int(PORT),
         log_level="info",
         reload=True,
         workers=1,
-        debug=True,
+        debug=False,
     )

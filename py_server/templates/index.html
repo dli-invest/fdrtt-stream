@@ -35,7 +35,10 @@
     </div>
 
     <script>
-      var ws = new WebSocket("ws://localhost:8000/ws/log?video_id=value1");
+      console.log("{{context.log_file}}");
+      console.log("{{context.port}}");
+      console.log("{{context.host}}");
+      var ws = new WebSocket("ws://{{context.host}}:{{context.port}}/ws/log?video_id=value1");
 
       ws.onmessage = function (event) {
         var logs = document.getElementById("logs");
