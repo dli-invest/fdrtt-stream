@@ -82,7 +82,7 @@ async def get(request: Request) -> templates.TemplateResponse:
     """
     PORT = os.environ.get("PORT", 8000)
     HOST = os.environ.get("HOST", "0.0.0.0")
-    context = {"title": "FastAPI Streaming Log Viewer over WebSockets", "log_file": log_file, "port": PORT}
+    context = {"title": "FastAPI Streaming Log Viewer over WebSockets", "log_file": log_file, "port": PORT, "host": HOST}
     if os.environ.get("DOMAIN"):
         context["domain"] = os.environ.get("DOMAIN")
     return templates.TemplateResponse("index.html", {"request": request, "context": context})
