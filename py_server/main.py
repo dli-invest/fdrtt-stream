@@ -89,7 +89,7 @@ async def get(request: Request) -> templates.TemplateResponse:
 
 
 # fix app websocket add param
-@app.websocket("/ws/log")
+@app.websocket("/ws/video")
 async def websocket_endpoint_log(websocket: WebSocket, video_id: Union[str, None] = Query(default=None),) -> None:
     """WebSocket endpoint for client connections
 
