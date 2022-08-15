@@ -19,6 +19,7 @@ from pathlib import Path
 from fastapi import FastAPI, WebSocket, Request, Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 
 # set path and log file name
 base_dir = Path(__file__).resolve().parent
@@ -43,7 +44,7 @@ def connect_to_db():
 
 async def fetch_sql_data(video_id: str):
     # find all results from dp8PhLsUcFE within the last day
-    query = "SELECT * FROM dp8PhLsUcFE WHERE created_at > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY) ORDER BY created_at DESC"
+    query = "SELECT * FROM dp8PhLsUcFE WHERE created_at > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY) ORDER BY created_at DESC LIMIT 5"
     # Dont care about previous data
     new_df = pd.read_sql(query, con=connect_to_db())
     print("FETCHING NEW DATA +", len(new_df))
@@ -88,6 +89,13 @@ async def get(request: Request) -> templates.TemplateResponse:
     return templates.TemplateResponse("index.html", {"request": request, "context": context})
 
 
+@app.get("/video/{video_id}", response_class=HTMLResponse)
+async def get_video_logs(video_id: str):
+    # find all results from dp8PhLsUcFE within the last day
+    print("VIDEO ID", video_id)
+    logs = await log_reader(30)
+    return "".join(logs)
+
 # fix app websocket add param
 @app.websocket("/ws/video")
 async def websocket_endpoint_log(websocket: WebSocket, video_id: Union[str, None] = Query(default=None),) -> None:
@@ -96,6 +104,7 @@ async def websocket_endpoint_log(websocket: WebSocket, video_id: Union[str, None
     Args:
         websocket (WebSocket): WebSocket request from client.
     """
+    print("WEBSOCKET request")
     await websocket.accept()
 
     try:

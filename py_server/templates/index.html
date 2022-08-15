@@ -35,28 +35,54 @@
     </div>
 
     <script>
-      console.log("{{context.log_file}}");
-      console.log("{{context.port}}");
-      console.log("{{context.host}}");
-      var host;
-      var rtt;
-      {% if context.domain == "fdrtt-stream-production.up.railway.app" %}
-      rtt = "wss"
-      host = "fdrtt-stream-production.up.railway.app"
-      {% else %}
-      rtt = "ws"
-      host = "{{context.host}}"
-      {% endif %}
-      console.log(rtt);
-      // maybe option for wss
-      var ws = new WebSocket(`${rtt}://${host}:{{context.port}}/ws/video?video_id=value1`);
+        function getVideoBody() {
+            console.log("HIT THIS ENDPOINT")
+            fetch('/video/test')
+                .then(response => response.text())
+                .then(text => {
+                    var logs = document.getElementById("logs");
+                    logs.innerHTML = text;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            // var logs = document.getElementById("logs");
+            // var log_data = "";
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("GET", "{{context.log_file}}", true);
+            // xhr.onreadystatechange = function() {
+            //     if (xhr.readyState == 4) {
+            //         log_data = xhr.responseText;
+            //         logs.innerHTML = log_data;
+            //         console.log("More messages incoming")
+            //     }
+            // }
+            // xhr.send();
+        }
+        getVideoBody();
+        setInterval(getVideoBody, 1000 * 60);
+    //   console.log("{{context.log_file}}");
+    //   console.log("{{context.port}}");
+    //   console.log("{{context.host}}");
+    //   var host;
+    //   var rtt;
+    //   {% if context.domain == "fdrtt-stream-production.up.railway.app" %}
+    //   rtt = "wss"
+    //   host = "fdrtt-stream-production.up.railway.app"
+    //   {% else %}
+    //   rtt = "ws"
+    //   host = "{{context.host}}"
+    //   {% endif %}
+    //   console.log(rtt);
+    //   // maybe option for wss
+    //   var ws = new WebSocket(`${rtt}://${host}:{{context.port}}/ws/video?video_id=value1`);
 
-      ws.onmessage = function (event) {
-        var logs = document.getElementById("logs");
-        var log_data = event.data;
-        logs.innerHTML = log_data;
-        console.log("More messages incoming")
-      };
+    //   ws.onmessage = function (event) {
+    //     var logs = document.getElementById("logs");
+    //     var log_data = event.data;
+    //     logs.innerHTML = log_data;
+    //     console.log("More messages incoming")
+    //   };
     </script>
   </body>
 </html>
