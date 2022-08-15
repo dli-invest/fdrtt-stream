@@ -38,8 +38,15 @@
       console.log("{{context.log_file}}");
       console.log("{{context.port}}");
       console.log("{{context.host}}");
+      var rtt;
+      {% if context.host == "https://fdrtt-stream-production.up.railway.app" %}
+      rtt = "wss"
+      {% else %}
+      rtt = "ws"
+      {% endif %}
+      console.log(rtt);
       // maybe option for wss
-      var ws = new WebSocket("ws://{{context.host}}:{{context.port}}/ws/log?video_id=value1");
+      var ws = new WebSocket(rtt + "://{{context.host}}:{{context.port}}/ws/log?video_id=value1");
 
       ws.onmessage = function (event) {
         var logs = document.getElementById("logs");
@@ -47,6 +54,6 @@
         logs.innerHTML = log_data;
         console.log("More messages incoming")
       };
-    </script>
+    </script>s
   </body>
 </html>
