@@ -7,5 +7,6 @@ RUN pip3 install -r requirements.txt
 
 COPY py_server .
 ENV PORT $PORT
+ENV DOMAIN "fdrtt-stream-production.up.railway.app"
 
 CMD [ "python3", "main.py"]

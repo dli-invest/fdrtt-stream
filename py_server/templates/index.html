@@ -39,7 +39,7 @@
       console.log("{{context.port}}");
       console.log("{{context.host}}");
       var rtt;
-      {% if context.host == "fdrtt-stream-production.up.railway.app" %}
+      {% if context.domain == "fdrtt-stream-production.up.railway.app" %}
       rtt = "wss"
       {% else %}
       rtt = "ws"
