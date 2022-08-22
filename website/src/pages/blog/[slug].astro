@@ -1,0 +1,38 @@
+---
+import { SITE } from "~/config.mjs";
+import { getPosts } from "~/utils/getPosts";
+import { findImage } from "~/utils/findImage";
+
+import Layout from "~/layouts/PageLayout.astro";
+import BlogPost from "~/components/widgets/BlogPost.astro";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const title = `${post.title} — ${SITE.name}`;
+const description = post.description;
+const canonical = new URL(`blog/${post.slug}`, Astro.site);
+
+const image = await findImage(post.image);
+---
+
+<Layout
+  meta={{
+    title,
+    description,
+    canonical,
+    image,
+  }}
+>
+  <main>
+    <BlogPost post={{ ...post, image }} />
+  </main>
+</Layout>
