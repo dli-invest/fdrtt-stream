@@ -103,3 +103,12 @@ All commands are run from the root of the project, from a terminal:
 ## Want more?
 
 If you have any suggestions or find any bugs, feel free to [open an issue](https://github.com/onwidget/astrowind/issues) or [create a pull request](https://github.com/onwidget/astrowind/pulls).
+
+
+### Todo
+
+Add https://docs.astro.build/en/guides/integrations-guide/mdx/
+
+for toc, needed for my kind of posts
+
+Can switch out the theme for https://hellotham.github.io/hello-astro/
