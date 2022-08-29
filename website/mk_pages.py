@@ -59,9 +59,7 @@ def create_mdx_page(df: pd.DataFrame, cfg: dict):
             title: "AstroWind template in depth"
             description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
             image: "~/assets/images/hero.jpg"
-            ---
-        \n
-        """
+---\n"""
         f.write(page_header) 
         for item in page_data:
             f.write(f"{item['spacy']}\n")
