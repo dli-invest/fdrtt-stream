@@ -36,8 +36,12 @@
 
     <script>
         function getVideoBody() {
-            console.log("HIT THIS ENDPOINT")
-            fetch('/video/test')
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+              get: (searchParams, prop) => searchParams.get(prop),
+            });
+
+            let video_id = params.video_id || "dp8PhLsUcFE"
+            fetch(`/video/${video_id}`)
                 .then(response => response.text())
                 .then(text => {
                     var logs = document.getElementById("logs");

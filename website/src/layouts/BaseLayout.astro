@@ -11,6 +11,33 @@ const { meta = {} } = Astro.props;
 <html lang="en">
   <head>
     <MetaTags {...meta} />
+    <style type="text/css" is:global>
+      aside {
+        width: 30%;
+        padding-left: 15px;
+        margin-left: 15px;
+        float: right;
+        font-style: italic;
+        background-color: white;
+        color: black;
+      }
+      div.header
+      {
+        position: relative;
+        text-align: center;
+        padding: 0 10px;
+        background: #f1f1f1;
+        color: black;
+      }
+
+      div.line
+      {
+        position: absolute;
+        top: 50%;
+        border-top: 1px dashed;
+        z-index: -1;
+      }
+    </style>
   </head>
 
   <body

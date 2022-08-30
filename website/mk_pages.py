@@ -23,11 +23,15 @@ def fetch_sql_data(video_id: str):
     new_df = pd.read_sql(query, con=connect_to_db())
     return new_df
 
+def map_video_id_to_title(video_id: str):
+    # map video_id to title
+    return "Bloomberg Livestream"
+
 def create_mdx_page(df: pd.DataFrame, cfg: dict):
     video_id = cfg.get("video_id", "dp8PhLsUcFE")
     page_path = f"{cfg.get('page_path')}"
     page_name = cfg.get("path_name", "index.mdx")
-    page_entries_for = cfg.get("created_at", "2020-01-01")
+    segment_created_at = cfg.get("created_at", "2020-01-01")
     page_data = []
     for index, row in df.iterrows():
         # text
@@ -53,12 +57,14 @@ def create_mdx_page(df: pd.DataFrame, cfg: dict):
     mdx_path = f"{page_path}/{page_name}"
     # create page
     # created at 
+    # title
+    title = f"{map_video_id_to_title(video_id)} - {segment_created_at}"
     with open(mdx_path, "w") as f:
         page_header = f"""---
-            pubDate: "{page_entries_for}"
-            title: "AstroWind template in depth"
-            description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-            image: "~/assets/images/hero.jpg"
+pubDate: "{segment_created_at}"
+title: "{video_id}"
+description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
+image: "~/assets/images/hero.jpg"
 ---\n"""
         f.write(page_header) 
         for item in page_data:

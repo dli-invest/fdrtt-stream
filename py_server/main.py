@@ -42,15 +42,15 @@ def connect_to_db():
         user=db_user, password=db_pass, host=db_host, database=db_name
     )
 
-async def fetch_sql_data(video_id: str):
+async def fetch_sql_data(video_id: str = "dp8PhLsUcFE"):
     # find all results from dp8PhLsUcFE within the last day
-    query = "SELECT * FROM dp8PhLsUcFE WHERE created_at > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY) ORDER BY created_at DESC LIMIT 5"
+    query = f"SELECT * FROM {video_id} WHERE created_at > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY) ORDER BY created_at DESC LIMIT 5"
     # Dont care about previous data
     new_df = pd.read_sql(query, con=connect_to_db())
     print("FETCHING NEW DATA +", len(new_df))
     return new_df
 
-async def log_reader(n=5) -> list:
+async def log_reader(video_id: str = "dp8PhLsUcFE") -> list:
     """Log reader
 
     Args:
@@ -60,7 +60,7 @@ async def log_reader(n=5) -> list:
         list: List containing last n-lines in log file with html tags.
     """
     # dataframe 
-    df = await fetch_sql_data("test")
+    df = await fetch_sql_data(video_id)
     # reverse order of dataframe
     df = df.iloc[::-1]
     log_lines = []
