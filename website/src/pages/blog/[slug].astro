@@ -5,6 +5,7 @@ import { findImage } from "~/utils/findImage";
 
 import Layout from "~/layouts/PageLayout.astro";
 import BlogPost from "~/components/widgets/BlogPost.astro";
+import SearchUI from "~/components/widgets/SearchUI.astro";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -33,6 +34,7 @@ const image = await findImage(post.image);
   }}
 >
   <main>
+    <SearchUI />
     <BlogPost post={{ ...post, image }} />
   </main>
 </Layout>

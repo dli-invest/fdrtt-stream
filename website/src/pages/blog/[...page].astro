@@ -1,9 +1,7 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
-
 import { SITE } from "~/config.mjs";
 import { getPosts } from "~/utils/getPosts";
-
 import BlogList from "~/components/widgets/BlogList.astro";
 
 export async function getStaticPaths({ paginate }) {

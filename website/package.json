@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && subfont -ir --no-fallbacks --root dist",
+    "build": "astro build",
+    "postbuild": "pagefind --source dist",
     "preview": "astro preview",
     "pretty": "prettier --write ."
   },
@@ -19,7 +20,6 @@
     "astro": "^1.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "^0.5.0",
-    "reading-time": "^1.5.0",
-    "subfont": "^6.9.0"
+    "reading-time": "^1.5.0"
   }
 }

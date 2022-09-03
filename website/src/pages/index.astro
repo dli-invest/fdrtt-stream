@@ -12,6 +12,7 @@ import TwoColsFeatures from "~/components/widgets/TwoColsFeatures.astro";
 import StepsLeft from "~/components/widgets/StepsLeft.astro";
 import HighlightedPosts from "~/components/widgets/HighlightedPosts.astro";
 import Stats from "~/components/widgets/Stats.astro";
+import SearchUI from "~/components/widgets/SearchUI.astro";
 
 const title = `${SITE.name} — Your website with Astro + Tailwind CSS`;
 const description =
@@ -26,7 +27,8 @@ const canonical = new URL("", Astro.site);
     <StepsLeft />
     <TwoColsFeatures />
     <StepsFeatures />
-    <HighlightedPosts />
+    <!-- <HighlightedPosts /> -->
+    <SearchUI />
     <BasicFAQs />
     <Stats />
     <BasicCTA />

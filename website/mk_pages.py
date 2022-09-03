@@ -3,6 +3,8 @@ import os
 import mysql.connector
 import pandas as pd
 import spacy
+from datetime import datetime
+
 nlp = spacy.load("en_core_web_sm")
 
 def connect_to_db():
@@ -27,7 +29,13 @@ def map_video_id_to_title(video_id: str):
     # map video_id to title
     return "Bloomberg Livestream"
 
-def create_mdx_page(df: pd.DataFrame, cfg: dict):
+def parse_date(date: str):
+    try:
+        return datetime.strptime(date, "%H:%M:%S")
+    except ValueError:
+        return date
+
+def create_md_page(df: pd.DataFrame, cfg: dict):
     video_id = cfg.get("video_id", "dp8PhLsUcFE")
     page_path = f"{cfg.get('page_path')}"
     page_name = cfg.get("path_name", "index.mdx")
@@ -44,7 +52,8 @@ def create_mdx_page(df: pd.DataFrame, cfg: dict):
                 "text": text,
                 "created_at": created_at,
                 "video_id": video_id,
-                "spacy": rendered_spacy
+                "spacy": rendered_spacy,
+                "iteration": row["iteration"]
             }
             page_data.append(full_data)
         except Exception as e:
@@ -62,31 +71,41 @@ def create_mdx_page(df: pd.DataFrame, cfg: dict):
     with open(mdx_path, "w") as f:
         page_header = f"""---
 pubDate: "{segment_created_at}"
-title: "{video_id}"
+category: "{video_id}"
+title: "{title}"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
 image: "~/assets/images/hero.jpg"
 ---\n"""
         f.write(page_header) 
-        for item in page_data:
+        for count, item in enumerate(page_data):
             f.write(f"{item['spacy']}\n")
-        pass
+            if count % 5 == 0:
+                # write aside to file
+                fmtted_time = parse_date(item["created_at"])
+                f.write(f"<aside><b> Time: {fmtted_time}</b> Iteration: {item['iteration']} </aside>\n")   
     return page_data
 
-def create_mdx_pages(config: dict):
+# TODO convert this to generate group of pages
+def create_md_pages(config: dict):
     cts_cfg = config.get("cts", {})
     # read video_id from livestream config
     # redo this entire logic later
-    bloomberg_cfg = cts_cfg.get("bloomberg", {})
-    bloomberg_id = bloomberg_cfg.get("video_id", "dp8PhLsUcFE")
-    # if bloomberg.csv exists, skip grabbing it 
-    if os.path.exists("bloomberg.csv"):
+
+    # for category in cts_cfg:
+    # process page here
+    # TODO loop through config based on category
+    category_cfg = cts_cfg.get("category", {})
+    video_id = category_cfg.get("video_id", "dp8PhLsUcFE")
+    csv_path = category_cfg.get("csv_path", "bloomberg.csv")
+    # if bloomberg.csv exists, skip grabbing it
+    if os.path.exists(csv_path):
         print("Bloomberg.csv exists, skipping fetch")
     else:
         # read video_id from livestream config
-        bloom_df = fetch_sql_data(bloomberg_id)
-        bloom_df.to_csv("bloomberg.csv", index=False)
+        bloom_df = fetch_sql_data(video_id)
+        bloom_df.to_csv(csv_path, index=False)
 
-    bloom_df = pd.read_csv("bloomberg.csv", index_col=False)
+    bloom_df = pd.read_csv(csv_path, index_col=False)
     stats_df = (pd.to_datetime(bloom_df['created_at'])
        .dt.floor('d')
        .value_counts()
@@ -96,7 +115,18 @@ def create_mdx_pages(config: dict):
     stats_df = stats_df.sort_values(by=['date'])
     # drop all rows with Unnamed in the column name
     curr_parsed = 0
+    page_paths = []
+    base_path = "src/data/posts"
     for index, row in stats_df.iterrows():
+        # check if page exists
+        # if it does, skip
+        # if it doesnt, create it
+        page_name = f'{video_id}_{row["date"].strftime("%Y-%m-%d")}.md'
+        page_folder = f'{video_id}'
+        page_path = f"{base_path}/{page_folder}"
+        if os.path.exists(f"{page_path}/{page_name}"):
+            print(f"{page_path} exists, skipping")
+            continue
         # grab each chunk of data from bloomberg
         # get count
         iter_count = int(row['count'])
@@ -104,24 +134,35 @@ def create_mdx_pages(config: dict):
         temp_df = bloom_df.iloc[curr_parsed:int(end_point)]
         curr_parsed += int(iter_count)
         # todo create markdown page from data, make reusing function
-        page_name = f'{row["date"].strftime("%Y-%m-%d")}.md'
-        page_folder = f'{bloomberg_id}'
-        base_path = "src/data/posts"
-        page_path = f"{base_path}/{page_folder}"
-        create_mdx_page(temp_df, {
-            "video_id": bloomberg_id,
+        # TODO update page_name 
+        create_md_page(temp_df, {
+            "video_id": video_id,
             "page_path": page_path,
             "created_at": row["date"],
             "path_name": page_name
         })
+        page_paths.append(f"/blog/{page_name.replace('.md', '')}")
         print(f"{page_name} created")
     # create_markdown_page(chunk)
     # group csv by date in days
+    
+    with open(f"{base_path}/{video_id}/{video_id}.md", "w") as f:
+        page_header = f"""---
+pubDate: "03-09-2022"
+category: "video_index"
+title: "{video_id}"
+description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
+image: "~/assets/images/hero.jpg"
+---\n"""
+        f.write(page_header)
+        f.write("\n")
+        for page in page_paths:
+            f.write(f"<a href='{page}'>{page}</a>\n")
     pass 
 
 def main():
     # read config and validate env vars
-    create_mdx_pages({})
+    create_md_pages({})
 
 if __name__ == "__main__":
     # for continuous livestreams, we have a post a page
