@@ -3,7 +3,7 @@ import os
 import mysql.connector
 import pandas as pd
 import spacy
-from datetime import datetime
+from datetime import datetime, timedelta
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -19,10 +19,13 @@ def connect_to_db():
 
 def fetch_sql_data(config: dict):
     video_id = config.get("video_id", "dp8PhLsUcFE")
-    # start date and end date
-    start_date = config.get("start_date", "2022/08/23")
+    # default start date, one day ago in YYYY/MM/DD format
+    one_day_ago = datetime.now() - timedelta(days=1)
+    default_start_date = one_day_ago.strftime("%Y/%m/%d")
+    default_end_date = datetime.now().strftime("%Y/%m/%d")
+    start_date = config.get("start_date", default_start_date)
     # end date is current date in YYYY-MM-DD format
-    end_date = config.get("end_date", datetime.now().strftime("%Y/%m/%d"))
+    end_date = config.get("end_date", default_end_date)
     # yes this is sql injection
     # personal project, not accessible to public where video_id is a string
     query = f"SELECT * FROM {video_id} where `created_at` BETWEEN '{start_date}' AND '{end_date}'"
@@ -129,10 +132,13 @@ def create_md_pages(config: dict):
         # check if page exists
         # if it does, skip
         # if it doesnt, create it
-        page_name = f'{video_id}_{row["date"].strftime("%Y-%m-%d")}.md'
+        row_date = row["date"].strftime("%Y-%m-%d")
+        page_name = f'{video_id}_{row_date}.md'
         page_folder = f'{video_id}'
         page_path = f"{base_path}/{page_folder}"
-        if os.path.exists(f"{page_path}/{page_name}"):
+        # force overwrite pages where row["date"] == current date
+        # as data is still trickling in
+        if os.path.exists(f"{page_path}/{page_name}") and row["date"].strftime("%Y-%m-%d") != datetime.now().strftime("%Y-%m-%d"):
             print(f"{page_path}/{page_name} exists, skipping")
             continue
         # grab each chunk of data from bloomberg
