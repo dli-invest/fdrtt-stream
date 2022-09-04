@@ -17,10 +17,16 @@ def connect_to_db():
         user=db_user, password=db_pass, host=db_host, database=db_name
     )
 
-def fetch_sql_data(video_id: str):
+def fetch_sql_data(config: dict):
+    video_id = config.get("video_id", "dp8PhLsUcFE")
+    # start date and end date
+    start_date = config.get("start_date", "2022/08/23")
+    # end date is current date in YYYY-MM-DD format
+    end_date = config.get("end_date", datetime.now().strftime("%Y/%m/%d"))
     # yes this is sql injection
     # personal project, not accessible to public where video_id is a string
-    query = f"SELECT * FROM {video_id}"
+    query = f"SELECT * FROM {video_id} where `created_at` BETWEEN '{start_date}' AND '{end_date}'"
+    # query = f"SELECT * FROM {video_id}"
     # Dont care about previous data
     new_df = pd.read_sql(query, con=connect_to_db())
     return new_df
@@ -98,12 +104,14 @@ def create_md_pages(config: dict):
     video_id = category_cfg.get("video_id", "dp8PhLsUcFE")
     csv_path = category_cfg.get("csv_path", "bloomberg.csv")
     # if bloomberg.csv exists, skip grabbing it
-    if os.path.exists(csv_path):
-        print("Bloomberg.csv exists, skipping fetch")
-    else:
-        # read video_id from livestream config
-        bloom_df = fetch_sql_data(video_id)
-        bloom_df.to_csv(csv_path, index=False)
+    # if os.path.exists(csv_path):
+    #     print("Bloomberg.csv exists, skipping fetch")
+    # else:
+    # read video_id from livestream config
+    bloom_df = fetch_sql_data({
+        "video_id": video_id
+    })
+    bloom_df.to_csv(csv_path, index=False)
 
     bloom_df = pd.read_csv(csv_path, index_col=False)
     stats_df = (pd.to_datetime(bloom_df['created_at'])
@@ -125,7 +133,7 @@ def create_md_pages(config: dict):
         page_folder = f'{video_id}'
         page_path = f"{base_path}/{page_folder}"
         if os.path.exists(f"{page_path}/{page_name}"):
-            print(f"{page_path} exists, skipping")
+            print(f"{page_path}/{page_name} exists, skipping")
             continue
         # grab each chunk of data from bloomberg
         # get count
@@ -145,10 +153,12 @@ def create_md_pages(config: dict):
         print(f"{page_name} created")
     # create_markdown_page(chunk)
     # group csv by date in days
+    # curr date in DD-MM-YYYY
+    curr_date  = datetime.now().strftime("%Y-%m-%d")
     
     with open(f"{base_path}/{video_id}/{video_id}.md", "w") as f:
         page_header = f"""---
-pubDate: "03-09-2022"
+pubDate: "{curr_date}"
 category: "video_index"
 title: "{video_id}"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
