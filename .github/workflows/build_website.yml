@@ -57,7 +57,8 @@ jobs:
           git pull origin main
           git add *.csv
           git add data/**/*.csv
-          git commit -m "add files"
+          git add website/src/data/posts
+          git commit -m "add files" || true
 
       - name: Push changes
         if: ${{ github.ref == 'refs/heads/main' }}
