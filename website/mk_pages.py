@@ -148,7 +148,7 @@ def create_md_pages(config: dict):
         # if it does, skip
         # if it doesnt, create it
         row_date = row["date"].strftime("%Y-%m-%d")
-        page_name = f'{video_id}_{row_date}.md'
+        page_name = f'{video_id}-{row_date}.md'
         page_folder = f'{video_id}'
         page_path = f"{base_path}/{page_folder}/{curr_year_month}"
         # force overwrite pages where row["date"] == current date
