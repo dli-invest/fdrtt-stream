@@ -52,7 +52,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git config pull.rebase false
-          git config pull.ff only
           git add *.csv
           git add data/**/*.csv
           git commit -m "add files"
