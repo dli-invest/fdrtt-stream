@@ -3,11 +3,13 @@
         "categories": [
             {
                 "table_name": "dp8PhLsUcFE",
-                "label": "Bloomberg Markets"
+                "label": "Bloomberg Markets",
+                "csv_prefix": "bloomberg"
             },
             {
                 "table_name": "YahooFinance",
-                "label": "Daily Stock Market Commentary from Yahoo Finance"
+                "label": "Daily Stock Market Commentary from Yahoo Finance",
+                "csv_prefix": "yahoo"
             }
         ]
     }

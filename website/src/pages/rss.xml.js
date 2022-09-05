@@ -12,7 +12,7 @@ export const get = () =>
       "A ready to start template to make your website using Astro and Tailwind CSS.",
     site: import.meta.env.SITE,
     items: posts.map((post) => ({
-      link: `/fdrrt-stream/blog/${post.slug}`,
+      link: `/fdrtt-stream/blog/${post.slug}`,
       title: post.title,
       description: post.description,
       pubDate: post.pubDate,
