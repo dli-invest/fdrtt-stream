@@ -196,12 +196,12 @@ def create_md_pages(config: dict):
         # TODO base this content on files in output folder
         with open(f"{base_path}/{table_name}/{table_name}.md", "w") as f:
             page_header = f"""---
-    pubDate: "{curr_date}"
-    category: "video_index"
-    title: "{table_name} - index file"
-    description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-    image: "~/assets/images/hero.jpg"
-    ---\n"""
+pubDate: "{curr_date}"
+category: "video_index"
+title: "{table_name} - index file"
+description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
+image: "~/assets/images/hero.jpg"
+---\n"""
             f.write(page_header)
             f.write("\n")
             for page in page_paths:
