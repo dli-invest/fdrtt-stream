@@ -29,10 +29,7 @@ def fetch_sql_data(config: dict):
     # yes this is sql injection
     # personal project, not accessible to public where video_id is a string
     query = f"SELECT * FROM {video_id} where `created_at` BETWEEN '{start_date}' AND '{end_date}'"
-    # query = f"SELECT * FROM {video_id}"
-    # Dont care about previous data
-    new_df = pd.read_sql(query, con=connect_to_db())
-    return new_df
+    return pd.read_sql(query, con=connect_to_db())
 
 def map_video_id_to_title(video_id: str):
     # map video_id to title
@@ -67,8 +64,6 @@ def create_md_page(df: pd.DataFrame, cfg: dict):
             page_data.append(full_data)
         except Exception as e:
             print(e)
-            pass
-
     # make pagepath if it doesnt exist
     if not os.path.exists(page_path):
         os.makedirs(page_path)
@@ -91,7 +86,7 @@ image: "~/assets/images/hero.jpg"
             if count % 5 == 0:
                 # write aside to file
                 fmtted_time = parse_date(item["created_at"])
-                f.write(f"<aside><b> Time: {fmtted_time}</b> Iteration: {item['iteration']} </aside>\n")   
+                f.write(f"<aside><b> Time: {fmtted_time}</b> Iteration: {item['iteration']} </aside>\n")
     return page_data
 
 # TODO convert this to generate group of pages
@@ -146,7 +141,7 @@ def create_md_pages(config: dict):
         iter_count = int(row['count'])
         end_point = curr_parsed + iter_count
         temp_df = bloom_df.iloc[curr_parsed:int(end_point)]
-        curr_parsed += int(iter_count)
+        curr_parsed += iter_count
         # todo create markdown page from data, make reusing function
         # TODO update page_name 
         create_md_page(temp_df, {
@@ -161,7 +156,7 @@ def create_md_pages(config: dict):
     # group csv by date in days
     # curr date in DD-MM-YYYY
     curr_date  = datetime.now().strftime("%Y-%m-%d")
-    
+
     with open(f"{base_path}/{video_id}/{video_id}.md", "w") as f:
         page_header = f"""---
 pubDate: "{curr_date}"
@@ -173,8 +168,7 @@ image: "~/assets/images/hero.jpg"
         f.write(page_header)
         f.write("\n")
         for page in page_paths:
-            f.write(f"<a href='{page}'>{page}</a>\n")
-    pass 
+            f.write(f"<a href='{page}'>{page}</a>\n") 
 
 def main():
     # read config and validate env vars
@@ -185,4 +179,3 @@ if __name__ == "__main__":
     # grab all data from sql, and then split into chunks based on day
     # then output markdown pages for each day
     main()
-    pass
