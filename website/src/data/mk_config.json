@@ -1,0 +1,14 @@
+{
+    "cts": {
+        "categories": [
+            {
+                "table_name": "dp8PhLsUcFE",
+                "label": "Bloomberg Markets"
+            },
+            {
+                "table_name": "YahooFinance",
+                "label": "Daily Stock Market Commentary from Yahoo Finance"
+            }
+        ]
+    }
+}
