@@ -91,6 +91,7 @@ description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod 
 image: "~/assets/images/hero.jpg"
 ---\n"""
         f.write(page_header)
+        f.write("Test Content")
         for count, item in enumerate(page_data):
             f.write(f"{item['spacy']}\n")
             if count % 5 == 0:
