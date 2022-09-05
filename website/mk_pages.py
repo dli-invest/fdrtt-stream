@@ -105,7 +105,17 @@ def create_md_pages(config: dict):
     # TODO loop through config based on category
     category_cfg = cts_cfg.get("category", {})
     video_id = category_cfg.get("video_id", "dp8PhLsUcFE")
+    # video_id
+
+    curr_date = datetime.now().strftime("%Y-%m-%d")
+    root_dir = f"../data/{video_id}"
+
+    # create folder if it exists
+    if not os.path.exists(root_dir):
+        os.makedirs(root_dir)
     csv_path = category_cfg.get("csv_path", "bloomberg.csv")
+
+    full_csv_path = f"{root_dir}/{csv_path}"
     # if bloomberg.csv exists, skip grabbing it
     # if os.path.exists(csv_path):
     #     print("Bloomberg.csv exists, skipping fetch")
@@ -114,9 +124,9 @@ def create_md_pages(config: dict):
     bloom_df = fetch_sql_data({
         "video_id": video_id
     })
-    bloom_df.to_csv(csv_path, index=False)
+    bloom_df.to_csv(full_csv_path, index=False)
 
-    bloom_df = pd.read_csv(csv_path, index_col=False)
+    bloom_df = pd.read_csv(full_csv_path, index_col=False)
     stats_df = (pd.to_datetime(bloom_df['created_at'])
        .dt.floor('d')
        .value_counts()
@@ -138,7 +148,7 @@ def create_md_pages(config: dict):
         page_path = f"{base_path}/{page_folder}"
         # force overwrite pages where row["date"] == current date
         # as data is still trickling in
-        if os.path.exists(f"{page_path}/{page_name}") and row["date"].strftime("%Y-%m-%d") != datetime.now().strftime("%Y-%m-%d"):
+        if os.path.exists(f"{page_path}/{page_name}") and row["date"].strftime("%Y-%m-%d") != curr_date:
             print(f"{page_path}/{page_name} exists, skipping")
             continue
         # grab each chunk of data from bloomberg
@@ -160,13 +170,13 @@ def create_md_pages(config: dict):
     # create_markdown_page(chunk)
     # group csv by date in days
     # curr date in DD-MM-YYYY
-    curr_date  = datetime.now().strftime("%Y-%m-%d")
     
+    # TODO base this content on files in output folder
     with open(f"{base_path}/{video_id}/{video_id}.md", "w") as f:
         page_header = f"""---
 pubDate: "{curr_date}"
 category: "video_index"
-title: "{video_id}"
+title: "{video_id} - index file"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
 image: "~/assets/images/hero.jpg"
 ---\n"""

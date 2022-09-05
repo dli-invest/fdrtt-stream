@@ -47,6 +47,20 @@ jobs:
       - name: Get data from pscale  
         run: cd website && python mk_pages.py
 
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add *.csv
+          git add data/**/*.csv
+          git commit -m "add files"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
       # Build the project and add .nojekyll file to supress default behaviour
       - name: Build
         run: |
