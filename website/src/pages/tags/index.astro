@@ -1,0 +1,25 @@
+---
+import Layout from "~/layouts/PageLayout.astro";
+import { SITE } from "~/config.mjs";
+import { getPosts } from "~/utils/getPosts";
+import SearchUI from "~/components/widgets/SearchUI.astro";
+
+const posts = await getPosts();
+// get all unique categories
+const categories = [...new Set(posts.map((post) => post.category))];
+
+const { page } = Astro.props;
+const title = "Blog Index"
+const description = "Tags available for video posts";
+---
+
+<Layout meta={{ title, description }}>
+  <main>
+    {categories.map((category) => {
+        return (
+            <a href={`/blog/${category}`}>{category}</a>
+        )
+    })}
+  </main>
+  <SearchUI />
+</Layout>
