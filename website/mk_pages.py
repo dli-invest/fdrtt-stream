@@ -115,7 +115,10 @@ def create_md_pages(config: dict):
     # create folder if it exists
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
-    csv_path = category_cfg.get("csv_path", "bloomberg.csv")
+
+    # current day
+    curr_day = datetime.now().strftime("%d")
+    csv_path = category_cfg.get("csv_path", f"bloomberg_{curr_day}.csv")
 
     full_csv_path = f"{root_dir}/{csv_path}"
     # if bloomberg.csv exists, skip grabbing it
@@ -147,7 +150,7 @@ def create_md_pages(config: dict):
         row_date = row["date"].strftime("%Y-%m-%d")
         page_name = f'{video_id}_{row_date}.md'
         page_folder = f'{video_id}'
-        page_path = f"{base_path}/{page_folder}"
+        page_path = f"{base_path}/{page_folder}/{curr_year_month}"
         # force overwrite pages where row["date"] == current date
         # as data is still trickling in
         if os.path.exists(f"{page_path}/{page_name}") and row["date"].strftime("%Y-%m-%d") != curr_date:
@@ -168,6 +171,9 @@ def create_md_pages(config: dict):
             "path_name": page_name
         })
         page_paths.append(f"/blog/{page_name.replace('.md', '')}")
+        # append .nojekyll file to each folder
+        with open(f"{page_path}/.nojekyll", "w") as f:
+            f.write("")
         print(f"{page_name} created")
     # create_markdown_page(chunk)
     # group csv by date in days
@@ -197,4 +203,3 @@ if __name__ == "__main__":
     # grab all data from sql, and then split into chunks based on day
     # then output markdown pages for each day
     main()
-    pass

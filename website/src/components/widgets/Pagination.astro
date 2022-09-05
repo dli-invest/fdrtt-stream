@@ -5,7 +5,7 @@ const { prevUrl, nextUrl } = Astro.props;
 <div class="container flex">
   <div class="flex flex-row mx-auto container justify-between">
     <a
-      href={prevUrl}
+      href={`/fdrtt-stream/${prevUrl}`}
       class={`btn font-medium text-gray-600 hover:text-gray-900 dark:hover:text-white shadow-none mr-2 ${
         !prevUrl ? "invisible" : ""
       }`}
@@ -26,7 +26,7 @@ const { prevUrl, nextUrl } = Astro.props;
       </div>
     </a>
     <a
-      href={nextUrl}
+      href={`/fdrtt-stream/${nextUrl}`}
       class={`btn font-medium text-gray-600 hover:text-gray-900 dark:hover:text-white shadow-none ${
         !nextUrl ? "invisible" : ""
       }`}
