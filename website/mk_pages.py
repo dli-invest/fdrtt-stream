@@ -194,7 +194,7 @@ def create_md_pages(config: dict):
         # curr date in DD-MM-YYYY
 
         # TODO base this content on files in output folder
-        with open(f"{base_path}/{table_name}/{table_name}.md", "w") as f:
+        with open(f"{base_path}/{table_name}/{table_name}.md", "w", encoding="utf-8") as f:
             page_header = f"""---
 pubDate: "{curr_date}"
 category: "video_index"
