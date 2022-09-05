@@ -115,7 +115,10 @@ def create_md_pages(config: dict):
     # create folder if it exists
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
-    csv_path = category_cfg.get("csv_path", "bloomberg.csv")
+
+    # current day
+    curr_day = datetime.now().strftime("%d")
+    csv_path = category_cfg.get("csv_path", f"bloomberg_{curr_day}.csv")
 
     full_csv_path = f"{root_dir}/{csv_path}"
     # if bloomberg.csv exists, skip grabbing it
