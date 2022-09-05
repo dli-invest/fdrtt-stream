@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<title>Error 404 — AstroWind</title>
+<meta name="description" content="">
+
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Error 404 — AstroWind">
+<meta itemprop="description" content="">
+<meta itemprop="image" content="https://astrowind.vercel.app/default.c6e14b88_Z2eFO6P.png">
+
+<!-- Facebook Meta Tags -->
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Error 404 — AstroWind">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://astrowind.vercel.app/default.c6e14b88_Z2eFO6P.png">
+
+<!-- Twitter Meta Tags -->
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Error 404 — AstroWind">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://astrowind.vercel.app/default.c6e14b88_Z2eFO6P.png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- Google Site Verification -->
+<meta name="google-site-verification" content="orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M">
+
+    
+  <link rel="stylesheet" href="/assets/404-blog-_...a78f6743.css" /></head>
+
+  <body class="antialiased text-gray-900 dark:text-slate-300 tracking-tight bg-white dark:bg-slate-900">
+    <main>
+    <section class="flex items-center h-full p-16">
+  <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+    <div class="max-w-md text-center">
+      <h2 class="mb-8 font-bold text-9xl">
+        <span class="sr-only">Error</span>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500">404
+        </span>
+      </h2>
+      <p class="text-3xl font-semibold md:text-3xl">
+        Sorry, we couldn't find this page.
+      </p>
+      <p class="mt-4 mb-8 text-lg text-gray-600 dark:text-slate-400">
+        But dont worry, you can find plenty of other things on our homepage.
+      </p>
+      <a rel="noopener noreferrer" href="/" class="btn text-white bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-800 ml-4">Back to homepage
+      </a>
+    </div>
+  </div>
+</section>
+  </main>
+    <script>
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+
+  function attachEvent(selector, event, fn) {
+    const matches = document.querySelectorAll(selector);
+    if (matches && matches.length) {
+      matches.forEach((elem) => {
+        elem.addEventListener(
+          event,
+          function () {
+            fn(elem);
+          },
+          false
+        );
+      });
+    }
+  }
+
+  window.onload = function () {
+    attachEvent("[data-aw-toggle-menu]", "click", function (elem) {
+      elem.classList.toggle("expanded");
+      document.getElementById("menu")?.classList.toggle("hidden");
+    });
+
+    attachEvent("[data-aw-toggle-color-scheme]", "click", function (elem) {
+      document.documentElement.classList.toggle("dark");
+      localStorage.theme = document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
+    });
+  };
+  window.onpageshow = function () {
+    const elem = document.querySelector("[data-aw-toggle-menu]");
+    if (elem) {
+      elem.classList.remove("expanded");
+    }
+    document.getElementById("menu")?.classList.add("hidden");
+  };
+</script>
+
+  </body></html>
