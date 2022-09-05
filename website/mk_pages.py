@@ -108,7 +108,9 @@ def create_md_pages(config: dict):
     # video_id
 
     curr_date = datetime.now().strftime("%Y-%m-%d")
-    root_dir = f"../data/{video_id}"
+    # get current year month
+    curr_year_month = datetime.now().strftime("%Y-%m")
+    root_dir = f"../data/{video_id}/{curr_year_month}"
 
     # create folder if it exists
     if not os.path.exists(root_dir):
