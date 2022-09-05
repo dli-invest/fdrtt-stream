@@ -1,7 +1,7 @@
 export const SITE = {
   name: "AstroWind",
-  domain: "https://astrowind.vercel.app",
-  github: "https://github.com/onwidget/astrowind",
+  domain: "https://dli-invest.github.io",
+  github: "https://github.com/dli-invest/fdrtt-stream",
 
   postsPerPage: 6,
 };

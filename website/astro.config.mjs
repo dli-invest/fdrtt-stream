@@ -10,6 +10,7 @@ import { SITE } from "./src/config.mjs";
 export default defineConfig({
   // Astro uses this full URL to generate your sitemap and canonical URLs in your final build
   site: SITE.domain,
+  base: "/fdrtt-stream",
 
   integrations: [
     tailwind({
