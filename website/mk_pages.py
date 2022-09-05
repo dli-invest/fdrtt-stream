@@ -171,6 +171,9 @@ def create_md_pages(config: dict):
             "path_name": page_name
         })
         page_paths.append(f"/blog/{page_name.replace('.md', '')}")
+        # append .nojekyll file to each folder
+        with open(f"{page_path}/.nojekyll", "w") as f:
+            f.write("")
         print(f"{page_name} created")
     # create_markdown_page(chunk)
     # group csv by date in days
@@ -200,4 +203,3 @@ if __name__ == "__main__":
     # grab all data from sql, and then split into chunks based on day
     # then output markdown pages for each day
     main()
-    pass
