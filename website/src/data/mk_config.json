@@ -2,9 +2,10 @@
     "cts": {
         "categories": [
             {
-                "table_name": "dp8PhLsUcFE",
+                "table_name": "Bloomberg",
                 "label": "Bloomberg Markets",
                 "csv_prefix": "bloomberg"
+                
             },
             {
                 "table_name": "YahooFinance",
