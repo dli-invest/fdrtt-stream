@@ -186,8 +186,6 @@ def create_md_pages(config: dict):
             })
             page_paths.append(f"/blog/{page_name.replace('.md', '')}")
             # append .nojekyll file to each folder
-            with open(f"{page_path}/.nojekyll", "w") as f:
-                f.write("\n")
             print(f"{page_name} created")
         # create_markdown_page(chunk)
         # group csv by date in days
