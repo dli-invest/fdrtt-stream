@@ -6,8 +6,7 @@ import spacy
 import json
 from datetime import datetime, timedelta
 
-nlp = spacy.load("en_core_web_sm")
-
+nlp = spacy.load("en_stonk_pipeline", disable=["lemmatizer"])
 
 def connect_to_db():
     # read database credentials from environment variables

@@ -4,4 +4,4 @@ uvicorn[standard]
 mysql-connector-python
 pandas
 spacy
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.0/en_core_web_sm-3.4.0-py3-none-any.whl
+https://huggingface.co/FriendlyUser/en_stonk_pipeline/resolve/main/en_stonk_pipeline-any-py3-none-any.whl

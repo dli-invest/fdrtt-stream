@@ -112,3 +112,7 @@ Add https://docs.astro.build/en/guides/integrations-guide/mdx/
 for toc, needed for my kind of posts
 
 Can switch out the theme for https://hellotham.github.io/hello-astro/
+
+```python
+python -m http.server --dir dist
+```
