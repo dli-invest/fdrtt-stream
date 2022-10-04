@@ -6,4 +6,3 @@ description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod 
 image: "~/assets/images/hero.jpg"
 ---
 
-<a href='/blog/YahooFinance-2022-10-03'>/blog/YahooFinance-2022-10-03</a>
