@@ -2,7 +2,7 @@ import { getNormalizedPost } from "~/utils/getNormalizedPost";
 
 const load = async function () {
   const posts = import.meta.glob("../data/posts/**/*.{md,mdx}", {
-    eager: true,
+    eager: false,
   });
 
   const normalizedPosts = Object.keys(posts).map(async (key) => {
@@ -10,9 +10,13 @@ const load = async function () {
     return await getNormalizedPost(post);
   });
 
-  const results = (await Promise.all(normalizedPosts)).sort(
+  let results = (await Promise.all(normalizedPosts)).sort(
     (a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf()
   );
+
+  // grab latest 1000 posts
+  results = results.slice(0, 50);
+
   return results;
 };
 
