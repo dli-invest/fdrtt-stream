@@ -6,4 +6,3 @@ description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod 
 image: "~/assets/images/hero.jpg"
 ---
 
-<a href='/blog/Bloomberg-2022-10-14'>/blog/Bloomberg-2022-10-14</a>
