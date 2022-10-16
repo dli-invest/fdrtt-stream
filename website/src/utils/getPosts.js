@@ -1,4 +1,4 @@
-import { getNormalizedPost } from "~/utils/getNormalizedPost";
+import { getNormalizedPost } from "../utils/getNormalizedPost";
 
 const load = async function () {
   const posts = import.meta.glob("../data/posts/**/*.{md,mdx}", {

@@ -1,8 +1,8 @@
 ---
-import Layout from "~/layouts/PageLayout.astro";
-import { SITE } from "~/config.mjs";
-import { getPosts } from "~/utils/getPosts";
-import SearchUI from "~/components/widgets/SearchUI.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import { SITE } from "../../config.mjs";
+import { getPosts } from "../../utils/getPosts";
+import SearchUI from "../../components/widgets/SearchUI.astro";
 
 const posts = await getPosts();
 // get all unique categories

@@ -1,11 +1,11 @@
 ---
-import { SITE } from "~/config.mjs";
-import { getPosts } from "~/utils/getPosts";
-import { findImage } from "~/utils/findImage";
+import { SITE } from "../../config.mjs";
+import { getPosts } from "../../utils/getPosts";
+import { findImage } from "../../utils/findImage";
 
-import Layout from "~/layouts/PageLayout.astro";
-import BlogPost from "~/components/widgets/BlogPost.astro";
-import SearchUI from "~/components/widgets/SearchUI.astro";
+import Layout from "../../layouts/PageLayout.astro";
+import BlogPost from "../../components/widgets/BlogPost.astro";
+import SearchUI from "../../components/widgets/SearchUI.astro";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
