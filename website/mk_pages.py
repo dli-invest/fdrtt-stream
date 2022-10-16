@@ -87,7 +87,7 @@ pubDate: "{segment_created_at}"
 category: "{table_name}"
 title: "{title}"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-image: "~/assets/images/hero.jpg"
+image: "../../../../assets/images/hero.jpg"
 ---\n"""
         f.write(page_header)
         f.write("Test Content")
@@ -197,7 +197,7 @@ pubDate: "{curr_date}"
 category: "video_index"
 title: "{table_name} - index file"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-image: "~/assets/images/hero.jpg"
+image: "../../../../assets/images/hero.jpg"
 ---\n"""
             f.write(page_header)
             f.write("\n")

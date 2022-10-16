@@ -3,7 +3,7 @@ pubDate: "2022-10-02 00:00:00"
 category: "Bloomberg"
 title: "Bloomberg - 2022-10-02 00:00:00"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-image: "~/assets/images/hero.jpg"
+image: "../../../../assets/images/hero.jpg"
 ---
 Test Content<div class="entities" style="line-height: 2.5; direction: ltr">Completely transform humanity's relationship with space. And there are scientists who think we could have already built it We have the material. We have the technology. We have the lasers. We have the climbers. We have all of them. If a private entity wants to build it or a government It'll change society we have no clue how colonizing in the space how really spreading on the space really change our society over 
 <mark class="entity" style="background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">

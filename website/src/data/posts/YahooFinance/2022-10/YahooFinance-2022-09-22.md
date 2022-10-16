@@ -3,7 +3,7 @@ pubDate: "2022-09-22 00:00:00"
 category: "YahooFinance"
 title: "YahooFinance - 2022-09-22 00:00:00"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-image: "~/assets/images/hero.jpg"
+image: "../../../../assets/images/hero.jpg"
 ---
 Test Content<div class="entities" style="line-height: 2.5; direction: ltr">To about 
 <mark class="entity" style="background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">

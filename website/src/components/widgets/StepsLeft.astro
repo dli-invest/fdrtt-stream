@@ -1,5 +1,5 @@
 ---
-import Picture from "~/components/core/Picture.astro";
+import Picture from "../core/Picture.astro";
 const {} = Astro.props;
 ---
 
@@ -159,7 +159,7 @@ const {} = Astro.props;
     <div class="relative">
       <Picture
         class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700"
-        src={import("~/assets/images/astronaut.jpg")}
+        src={import("../../assets/images/astronaut.jpg")}
         widths={[400, 768]}
         sizes="(max-width: 768px) 100vw, 432px"
         alt="Astronaut"

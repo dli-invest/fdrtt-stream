@@ -3,7 +3,7 @@ pubDate: "2022-10-07 00:00:00"
 category: "YahooFinance"
 title: "YahooFinance - 2022-10-07 00:00:00"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-image: "~/assets/images/hero.jpg"
+image: "../../../../assets/images/hero.jpg"
 ---
 Test Content<div class="entities" style="line-height: 2.5; direction: ltr">See that being reflected in the pound. Up there in the upper left that is 
 <mark class="entity" style="background: #feca74; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">

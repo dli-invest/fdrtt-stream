@@ -14,8 +14,8 @@ const load = async function () {
     (a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf()
   );
 
-  // grab latest 1000 posts
-  results = results.slice(0, 50);
+  // grab latest 50 posts
+  results = results.slice(0, 3);
 
   return results;
 };

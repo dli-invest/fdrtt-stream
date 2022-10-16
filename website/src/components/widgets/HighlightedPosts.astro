@@ -1,5 +1,5 @@
 ---
-import Picture from "~/components/core/Picture.astro";
+import Picture from "../core/Picture.astro";
 const {} = Astro.props;
 ---
 
@@ -23,7 +23,7 @@ const {} = Astro.props;
   <div class="grid gap-6 row-gap-5 md:grid-cols-2 lg:grid-cols-4 -mb-6">
     <div class="mb-6 transition">
       <Picture
-        src={import("~/assets/images/steps.jpg")}
+        src={import("../../assets/images/steps.jpg")}
         class="object-cover w-full h-64 mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
         widths={[400, 768]}
         sizes="(max-width: 767px) 400px, 768px"
@@ -47,7 +47,7 @@ const {} = Astro.props;
 
     <div class="mb-6 transition">
       <Picture
-        src={import("~/assets/images/colors.jpg")}
+        src={import("../../assets/images/colors.jpg")}
         class="object-cover w-full h-64 mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
         widths={[400, 768]}
         sizes="(max-width: 767px) 400px, 768px"
@@ -70,7 +70,7 @@ const {} = Astro.props;
 
     <div class="mb-6 transition">
       <Picture
-        src={import("~/assets/images/tools.jpg")}
+        src={import("../../assets/images/tools.jpg")}
         class="object-cover w-full h-64 mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
         widths={[400, 768]}
         sizes="(max-width: 767px) 400px, 768px"
@@ -93,7 +93,7 @@ const {} = Astro.props;
 
     <div class="mb-6 transition">
       <Picture
-        src={import("~/assets/images/hero.jpg")}
+        src={import("../../assets/images/hero.jpg")}
         class="object-cover w-full h-64 mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
         widths={[400, 768]}
         sizes="(max-width: 767px) 400px, 768px"

@@ -3,7 +3,7 @@ pubDate: "2022-10-08 00:00:00"
 category: "Bloomberg"
 title: "Bloomberg - 2022-10-08 00:00:00"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-image: "~/assets/images/hero.jpg"
+image: "../../../../assets/images/hero.jpg"
 ---
 Test Content<div class="entities" style="line-height: 2.5; direction: ltr"> This is about my neck broken. I had my left ankle broken, had to get that repaired. I've had a torn right labor in my shoulder. He broke my eyeball. I mean the bone holds up my eyeball. I've had my left eye orbital fracture twice where my eye caved in. I was walling my own blood. I knew, don't blow your nose or both eyes or blow. At the time that 
 <mark class="entity" style="background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">

@@ -1,5 +1,5 @@
 ---
-import Picture from "~/components/core/Picture.astro";
+import Picture from "../core/Picture.astro";
 const {} = Astro.props;
 ---
 
@@ -51,7 +51,7 @@ const {} = Astro.props;
         <div class="relative flex justify-center mb-8">
           <div class="flex flex-col justify-center">
             <Picture
-              src={import("~/assets/images/hero.jpg")}
+              src={import("../../assets/images/hero.jpg")}
               class="mx-auto rounded-md shadow-lg bg-gray-400 dark:bg-slate-700"
               widths={[400, 768]}
               sizes=" (max-width: 767px) 400px, 768px"

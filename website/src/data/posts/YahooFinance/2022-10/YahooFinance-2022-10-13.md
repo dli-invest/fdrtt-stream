@@ -3,7 +3,7 @@ pubDate: "2022-10-13 00:00:00"
 category: "YahooFinance"
 title: "YahooFinance - 2022-10-13 00:00:00"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
-image: "~/assets/images/hero.jpg"
+image: "../../../../assets/images/hero.jpg"
 ---
 Test Content<div class="entities" style="line-height: 2.5; direction: ltr">Going forward from here because yeah as much as it is something to be able to get around in a luxury fashion it's still also something that is going to proceibly carry more value over time than if I were to get into I don't know 
 <mark class="entity" style="background: #ffeb80; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
