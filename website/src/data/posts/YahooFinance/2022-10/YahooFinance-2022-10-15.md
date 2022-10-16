@@ -1,9 +1,8 @@
 ---
-pubDate: "2022-10-16"
-category: "video_index"
-title: "Bloomberg - index file"
+pubDate: "2022-10-15 00:00:00"
+category: "YahooFinance"
+title: "YahooFinance - 2022-10-15 00:00:00"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
 image: "~/assets/images/hero.jpg"
 ---
-
-<a href='/blog/Bloomberg-2022-10-15'>/blog/Bloomberg-2022-10-15</a>
+Test Content
