@@ -2,7 +2,9 @@ import getReadingTime from "reading-time";
 
 export const getNormalizedPost = async (post) => {
   const { frontmatter, compiledContent, rawContent, file } = post;
-
+  if (!frontmatter) {
+    return null
+  }
   return {
     pubDate: frontmatter.pubDate,
     title: frontmatter.title,

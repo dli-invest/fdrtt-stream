@@ -5,10 +5,14 @@ const load = async function () {
     eager: false,
   });
 
-  const normalizedPosts = Object.keys(posts).map(async (key) => {
+  let normalizedPosts = Object.keys(posts).map(async (key) => {
     const post = await posts[key];
     return await getNormalizedPost(post);
   });
+  // remove null entries
+  normalizedPosts = (await Promise.all(normalizedPosts)).filter(
+    (post) => post !== null
+  );
 
   let results = (await Promise.all(normalizedPosts)).sort(
     (a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf()
