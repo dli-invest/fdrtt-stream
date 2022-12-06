@@ -1,5 +1,5 @@
 ---
-pubDate: "2022-12-05"
+pubDate: "2022-12-06"
 category: "video_index"
 title: "Bloomberg - index file"
 description: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
